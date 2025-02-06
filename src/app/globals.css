@@ -1,21 +1,686 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* =======================
+   RESET GÉNÉRAL
+   ======================= */
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html, body {
+    height: 100%;  
+    margin: 0;
+    display: flex;
+    flex-direction: column; 
+}
+
+main {
+    flex: 1; 
+}
+
+/* =======================
+   HEADER
+   ======================= */
+header {
+    padding: 10px;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+header img {
+    display: block;
+    margin: auto;
+}
+
+/* =======================
+   NAVIGATION
+   ======================= */
+   nav {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    flex-wrap: wrap; 
+}
+
+nav .menu-links{
+    display: flex;
+    gap: 15px;
+}
+
+/* Container pour les liens */
+nav div {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap; 
+}
+
+/* Les liens */
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+/* Changement de style au survol */
+nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* Bouton d'inscription spécifique */
+nav div:last-child a:last-child {
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+nav div:last-child a:last-child:hover {
+    background-color: #ddd;
+}
+
+/* =======================
+   CONTENU PRINCIPAL
+   ======================= */
+main {
+    flex: 1; 
+    padding: 20px;
+}
+
+/* TITRES */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* =======================
+   FORMULAIRE DE CANDIDATURE
+   ======================= */
+   .application-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0; 
+    align-items: flex-start; 
+}
+
+/* Labels en dehors des fieldset : style original */
+label {
+    text-transform: uppercase;
+    color: #E86C2C;
+    font-weight: bold;
+}
+
+/* Labels dans les fieldset : texte normal */
+fieldset label {
+    text-transform: none; 
+    color: inherit; 
+    font-weight: normal; 
+}
+
+/* Legend des fieldset en orange */
+fieldset legend {
+    text-transform: uppercase;
+    color: #E86C2C;
+    font-weight: bold;
+}
+
+/* Boutons */
+button {
+    cursor: pointer;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.btn {
+    background-color: #E86C2C;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #D95A1B;
+}
+
+.btn-secondary {
+    background-color: #ccc;
+    color: black;
+}
+
+/* Aligner les boutons côte à côte */
+.application-form button {
+    display: inline-block; 
+    margin-right: 10px; 
+}
+
+.application-form button:last-child {
+    margin-right: 0; 
+}
+
+
+/* =======================
+   BOUTON D'UPLOAD DE FICHIER (CV)
+   ======================= */
+.file-btn {
+    display: inline-block;
+    background-color: #E86C2C;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-align: center;
+    border: none;
+}
+
+.file-btn:hover {
+    background-color: #D95A1B;
+}
+
+/* =======================
+   TAGS (EX : COMPÉTENCES)
+   ======================= */
+.tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tags span {
+    border: 1px solid black;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+/* =======================
+   LIENS ET TERMES LÉGAUX
+   ======================= */
+.terms {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 20px;
+}
+
+.terms a {
+    color: #E86C2C;
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+/* =======================
+    FOOTER 
+   ======================= */
+   footer {
+    background-color: #333; 
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.8rem;
+    width: 100%;
+    
+}
+
+footer .legal-link {
+    color: #E86C2C;
+    text-decoration: none;
+}
+
+footer .legal-link:hover {
+    text-decoration: underline;
+}
+
+/* =======================
+    Postuler Pop up 
+   ======================= */
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #E86C2C;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 101;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Le conteneur principal occupe toute la hauteur de la page */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Assure que la page occupe toute la hauteur de l'écran */
+  }
+
+  /* Le main prend l'espace disponible entre le header et le footer */
+  main {
+    flex: 1; /* Pousse le footer au bas de la page */
+  }
+
+  nav .menu-links{
+    display: flex;
+    gap: 15px; 
+  }
+
+  nav div {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  nav div:last-child a:last-child {
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  nav div:last-child a:last-child:hover {
+    background-color: #ddd;
+  }
+
+  nav {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+  }
+
+  .offers-list {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  @media (max-width: 1000px) {
+    .offers-list {
+      grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+  }
+
+  @media (max-width: 700px) {
+    .offers-list {
+      grid-template-columns: minmax(300px, 1fr);
+    }
+  }
+
+  .offer-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .offer-card h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+  }
+
+  .subtitle {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+    text-align: left; 
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  .tags span {
+    background: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    color: #555;
+    transition: all 0.3s ease;
+  }
+
+  .tags span:hover {
+    background: #333;
+    color: white;
+  }
+
+  button {
+    padding: 8px 16px;
+    background: #E86C2C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+  }
+
+  button:hover {
+    background: #f0f0f0;
+    color: black;
+  }
+
+  h2 {
+    text-align: center;
+    color: #333;
+    margin: 20px 0;
+  }
+
+  p {
+    text-align: left;
+    color: #666;
+    margin-bottom: 30px;
+  }
+
+  x {
+    text-align: right;
+    color: #666;
+    margin-bottom: 30px;
+  }
+
+  footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  footer a {
+    color: white;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  .error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+
+  button {
+    padding: 8px 16px;
+    background: #E86C2C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+  }
+
+  button:hover {
+    background: #f0f0f0;
+    color: black;
+  }
+
+  .btn-secondary {
+    background: #ddd;
+  }
+
+  .btn-secondary:hover {
+    background: #bbb;
+  }
+
+  /* =======================
+   STYLE GÉNÉRAL
+   ======================= */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+/* Menu desktop - visible sur les grands écrans */
+.desktop-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.desktop-nav div {
+  display: flex;
+  gap: 15px;
+}
+
+/* Burger menu */
+.burger-menu {
+  display: none; /* Cacher le menu burger par défaut */
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /* Cacher le menu desktop et afficher le burger menu sur les petits écrans */
+  .desktop-nav {
+    display: none;
+  }
+
+  .burger-menu {
+    display: block; /* Afficher l'icône du burger */
+  }
+
+  /* Style du menu mobile */
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    background-color: #333;
+    padding: 10px;
+    position: absolute;
+    top: 60px; /* Pour qu'il ne chevauche pas l'en-tête */
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  .mobile-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .mobile-nav a:hover {
+    background-color: #444;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Navigation principale */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  flex-wrap: wrap;
+}
+
+/* Conteneur des liens de menu */
+nav .menu-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Conteneur des liens de connexion et inscription, aligné à droite */
+nav .auth-links {
+  display: flex;
+  gap: 15px;
+  margin-left: auto;
+}
+
+/* Style des liens */
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+/* Changement de style au survol */
+nav a:hover {
+  text-decoration: underline;
+}
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  z-index: 1000;
+}
+
+.cookie-banner button {
+  background-color: #E86C2C;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.cookie-banner button:hover {
+  background-color: #E86C2C;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Hauteur totale de la fenêtre */
+}
+
+main {
+  flex-grow: 1; /* Le contenu principal occupe tout l'espace restant */
+}
+
+footer {
+  margin-top: auto; /* Force le footer à se placer en bas */
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #E86C2C;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  z-index: 1001;
+}
+
+.scroll-to-top:hover {
+  background-color: #E86C2C;
+}
+
+.scroll-to-top:active {
+  background-color: #E86C2C;
+}
+
+/* Affiche le bouton lorsque showScrollButton est true */
+.scroll-to-top {
+  display: block;
 }
