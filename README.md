@@ -8,39 +8,6 @@ Ce projet est un site web de recherche de stage, développé dans le cadre d'un 
 - HTML, JavaScript, CSS
 - Utilisation de nextjs
 
-## Architecture 
-
-└── betasown-pr_web/
-    ├── README.md
-    ├── eslint.config.mjs
-    ├── jsconfig.json
-    ├── next.config.mjs
-    ├── package.json
-    ├── postcss.config.mjs
-    ├── tailwind.config.mjs
-    ├── public/
-    └── src/
-        └── app/
-            ├── globals.css
-            ├── layout.js
-            ├── page.js
-            ├── a-propos/
-            │   └── page.js
-            ├── cgu/
-            │   └── page.js
-            ├── connexion/
-            │   └── page.js
-            ├── contact/
-            │   └── page.js
-            ├── inscription/
-            │   └── page.js
-            ├── ml/
-            │   └── page.js
-            └── offres/
-                ├── page.js
-                └── [id]/
-                    └── page.js
-
 ## Installation
 
 1. Clonez le dépôt :
